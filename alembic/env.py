@@ -16,8 +16,8 @@ from app.models import User, MovieCache, Genre, UserList, UserListMovie, UserRat
 config = context.config
 settings = get_settings()
 
-# Override sqlalchemy.url with our DATABASE_URL
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+# Override sqlalchemy.url with our DATABASE_URL (ensuring asyncpg driver)
+config.set_main_option("sqlalchemy.url", settings.async_database_url)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)

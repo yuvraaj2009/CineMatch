@@ -9,14 +9,15 @@ settings = get_settings()
 
 # Neon requires SSL; asyncpg needs an ssl.SSLContext, not a query param
 connect_args = {}
-if "neon.tech" in settings.DATABASE_URL:
+db_url = settings.async_database_url
+if "neon.tech" in db_url:
     ssl_ctx = ssl.create_default_context()
     ssl_ctx.check_hostname = False
     ssl_ctx.verify_mode = ssl.CERT_NONE
     connect_args["ssl"] = ssl_ctx
 
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    db_url,
     echo=settings.ENVIRONMENT == "development",
     pool_pre_ping=True,
     connect_args=connect_args,
