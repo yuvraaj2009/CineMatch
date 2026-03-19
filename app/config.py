@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     REMEMBER_ME_EXPIRE_DAYS: int = 30
 
     # CORS
-    CORS_ORIGINS: str = "http://localhost:3000"
+    CORS_ORIGINS: str = "http://localhost:3000,https://cinematch-web-tan.vercel.app"
 
     # Environment
     ENVIRONMENT: str = "development"
